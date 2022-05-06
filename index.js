@@ -9,6 +9,9 @@ const METADATA_DIR = "metadata/";
 const LOCAL_SEPARATOR = "_";
 const FILE_EXT = ".json";
 const METADATA_EXT = ".txt";
+const ID_LEN = 5;
+
+const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 // Set up reading of the JSON body. You can access the body with req.body
 app.use(express.json());
@@ -21,7 +24,16 @@ app.post("/:id?", (req, res) => {
     console.log('received', id, "version");
 
     if (!id) {
-        id = "11111";
+        // Generate "random" 5 character string
+        const genRndChar = () => {
+            const idx = Math.floor(Math.random() * chars.length);
+            return chars[idx];
+        };
+
+        id = "";
+        for (let i = 0; i < ID_LEN; i++) {
+            id += genRndChar();
+        }
     }
 
     const metadataPath = METADATA_DIR + id + METADATA_EXT;
