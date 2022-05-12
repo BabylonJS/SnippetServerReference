@@ -21,8 +21,7 @@ app.use(cors());
 app.post("/:id?", (req, res) => {
     let id = req.params.id;
     let version;
-    console.log('received', id, "version");
-
+    
     if (!id) {
         // Generate "random" 5 character string
         const genRndChar = () => {
