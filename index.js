@@ -14,7 +14,7 @@ const ID_LEN = 5;
 const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 // Set up reading of the JSON body. You can access the body with req.body
-app.use(express.json());
+app.use(express.json({limit: '50mb'}));
 // Set up CORS handling. Here you could specify only some specific domains to accept requests from
 app.use(cors());
 
